@@ -7,6 +7,12 @@
 
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
+<script>
+    $(document).on('keyup', '#company_id', function(e) {
+        // console.log(e.target.value.toUpperCase())
+        $(this).val(e.target.value.toUpperCase())
+    })
+</script>
 
 </body>
 

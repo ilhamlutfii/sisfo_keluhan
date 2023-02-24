@@ -42,15 +42,9 @@ class Auth extends CI_Controller
                     // die;
                     if (password_verify($password, $hasil->password)) {
                         $this->session->set_userdata('username', $username);
-                        $this->session->set_userdata('company_id', $hasil->company_id);
-                        $this->session->set_userdata('role_id', $hasil->role_id);
-                        if ($hasil->role_id ==  1) {
-                            redirect('dashboard');
-                        } elseif ($hasil->role_id ==  2) {
-                            redirect('dashboard/customer');
-                        } else {
-                            redirect('cashboard');
-                        }
+                        $this->session->set_userdata('company', $hasil->company_id);
+                        $this->session->set_userdata('role', $hasil->role_id);
+                        redirect('user');
                     } else {
                         $this->session->set_flashdata('message', ' <div class="alert alert-danger" role="alert">Password Salah</div>');
                         redirect('auth');
@@ -101,7 +95,8 @@ class Auth extends CI_Controller
     public function logout()
 
     {
-        $this->session->sess_destroy();
+        $this->session->unset_userdata('username');
+        $this->session->unset_userdata('role_id');
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Logout Berhasil</div>');
         redirect('auth');
     }
