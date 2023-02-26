@@ -17,4 +17,14 @@ class Auth_Model extends CI_Model
         $query = $this->db->get();
         return $query;
     }
+
+    public function getCompany()
+    {
+        $this->db->select('tb_company.*', 'b.company_id');
+        $this->db->from($this->_table2);
+        $this->db->join($this->_table . ' b', 'b.company_id=tb_company.id');
+        $this->db->where('company_id', $this->session->userdata('company_id'));
+        $query = $this->db->get();
+        return $query;
+    }
 }

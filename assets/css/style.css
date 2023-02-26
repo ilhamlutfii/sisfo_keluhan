@@ -172,14 +172,13 @@ sup {
 }
 
 a {
-    color: #4e73df;
     text-decoration: none;
     background-color: transparent
 }
 
 a:hover {
     color: #224abe;
-    text-decoration: underline
+    text-decoration: none;
 }
 
 a:not([href]):not([class]) {
@@ -1826,8 +1825,7 @@ pre code {
 }
 
 .table-hover tbody tr:hover {
-    color: #858796;
-    background-color: rgba(0, 0, 0, .075)
+    color: #4c4c4d;
 }
 
 .table-primary,
@@ -3613,7 +3611,7 @@ input[type=submit].btn-block {
 .dropdown-item:hover {
     color: #2e2f37;
     text-decoration: none;
-    background-color: #eaecf4
+    background-color: #0062cc
 }
 
 .dropdown-item.active,
@@ -4435,6 +4433,7 @@ input[type=submit].btn-block {
     }
 }
 
+
 .nav {
     display: flex;
     flex-wrap: wrap;
@@ -4445,12 +4444,13 @@ input[type=submit].btn-block {
 
 .nav-link {
     display: block;
-    padding: .5rem 1rem
+    padding: .5rem 1rem;
+    color: white;
 }
 
 .nav-link:focus,
 .nav-link:hover {
-    text-decoration: none
+    text-decoration: none;
 }
 
 .nav-link.disabled {
@@ -7234,6 +7234,12 @@ button.bg-dark:hover {
 
 .rounded-0 {
     border-radius: 0 !important
+}
+
+.logo-img {
+    border-radius: .35rem !important;
+    width: 120px;
+    height: 120px;
 }
 
 .clearfix::after {
@@ -11528,8 +11534,14 @@ a:focus {
 
 .sidebar .nav-item {
     position: relative;
-    background-color: #555;
-    color: white;
+
+}
+
+/* hover menu kiri */
+.sidebar .nav-item:hover {
+    position: relative;
+    background-color: white;
+
 }
 
 .sidebar .nav-item:last-child {
@@ -11539,7 +11551,7 @@ a:focus {
 .sidebar .nav-item .nav-link {
     text-align: center;
     padding: .75rem 1rem;
-    width: 6.5rem
+    width: 6.5rem;
 }
 
 .sidebar .nav-item .nav-link span {
@@ -11548,7 +11560,9 @@ a:focus {
 }
 
 .sidebar .nav-item.active .nav-link {
-    font-weight: 700
+    font-weight: 700;
+    color: var(--primary);
+    background-color: white;
 }
 
 .sidebar .nav-item .collapse {
@@ -11673,7 +11687,8 @@ a:focus {
 }
 
 .sidebar hr.sidebar-divider {
-    margin: 0 1rem 1rem
+    margin: 0 1rem 1rem;
+    background-color: white;
 }
 
 .sidebar .sidebar-heading {
@@ -11767,6 +11782,7 @@ a:focus {
         font-weight: 900;
         content: '\f107';
         font-family: 'Font Awesome 5 Free'
+
     }
 
     .sidebar .nav-item .nav-link[data-toggle=collapse].collapsed::after {
@@ -11891,11 +11907,12 @@ a:focus {
 }
 
 .sidebar-light .nav-item.active .nav-link {
-    color: #6e707e
+    color: #6e707e;
+    background-color: #6e707e;
 }
 
 .sidebar-light .nav-item.active .nav-link i {
-    color: #6e707e
+    color: #6e707e;
 }
 
 .sidebar-light #sidebarToggle {
@@ -11947,11 +11964,12 @@ a:focus {
 }
 
 .sidebar-dark .nav-item.active .nav-link {
-    color: #fff
+    color: #466bd9;
+    background-color: #f7f8fb;
 }
 
 .sidebar-dark .nav-item.active .nav-link i {
-    color: #fff
+    color: #466bd9
 }
 
 .sidebar-dark #sidebarToggle {
@@ -12104,7 +12122,7 @@ a:focus {
 }
 
 .bg-login-image {
-    background: url(https://source.unsplash.com/K4mSJ7kc0As/600x800);
+    background: url('../img/logo.png');
     background-position: center;
     background-size: cover
 }
@@ -12112,7 +12130,7 @@ a:focus {
 .bg-register-image {
     background: url(https://source.unsplash.com/Mv9hjnEUHR4/600x800);
     background-position: center;
-    background-size: cover
+    background-size: cover;
 }
 
 .bg-password-image {
@@ -12136,6 +12154,18 @@ form.user .btn-user {
     border-radius: 10rem;
     padding: .75rem 1rem
 }
+
+.header-text {
+    color: var(--primary);
+}
+
+.sub-text {
+    font-size: 11px;
+    text-align: right;
+    margin: auto;
+    color: dimgrey;
+}
+
 
 .btn-google {
     color: #fff;

@@ -2,7 +2,7 @@
  <footer class="sticky-footer bg-white">
      <div class="container my-auto">
          <div class="copyright text-center my-auto">
-             <span>Copyright &copy; Your Website 2020</span>
+             <span>Copyright &copy; PT MEDIA SARANA INFORMASI 2023</span>
          </div>
      </div>
  </footer>
@@ -47,6 +47,15 @@
 
  <!-- Custom scripts for all pages-->
  <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
+ <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+ <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+ <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script>
+
+ <script>
+     $(document).ready(function() {
+         $('#dataTable').DataTable();
+     });
+ </script>
 
  </body>
 
