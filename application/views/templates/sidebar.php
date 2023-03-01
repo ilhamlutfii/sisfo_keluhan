@@ -1,48 +1,54 @@
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar accordion" id="accordionSidebar">
-            <!-- sidebar-dark -->
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Sidebar -->
+    <div class="sidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('dashboard'); ?>">
-                <div class="sidebar-brand-icon rotate-n-15">
-                </div>
-                <div class="sidebar-brand-text mx-3" style="color: white;">TEST</div>
-            </a>
+        <!-- Sidebar user (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="assets/dist/img/logo.png" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">Alexander Pierce</a>
+            </div>
+        </div>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- QUERY MENU -->
-
-            <?php foreach ($listrole->result() as $menu) : ?>
-                <?php if ($title == $menu->menu_name) : ?>
-                    <li class="nav-item active">
-                    <?php else : ?>
-                    <li class="nav-item ">
-                    <?php endif; ?>
-                    <a class="nav-link" href="<?= base_url($menu->url); ?>">
-                        <i class="<?= $menu->icon; ?>"></i>
-                        <span><?= $menu->menu_name; ?></span></a>
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                <?php foreach ($companyname->result() as $companyname) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <i><?= $companyname->company_code; ?></i>
+                            <p> - <?= $companyname->company_name; ?></p>
+                        </a>
+                    <?php endforeach ?>
                     </li>
-                <?php endforeach ?>
+            </ul>
+        </nav>
 
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-
-                <!-- Nav Item - Charts -->
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('auth/logout') ?>">
-                        <i class="fas fa-fw fa-sign-out-alt"></i>
-                        <span>Logout</span></a>
-                </li>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider d-none d-md-block">
-
-                <!-- Sidebar Toggler (Sidebar) -->
-                <div class="text-center d-none d-md-inline">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
-
-        </ul>
-        <!-- End of Sidebar -->
+        <!-- Sidebar Menu -->
+        <nav class=" mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+                <?php foreach ($listrole->result() as $menu) : ?>
+                    <?php if ($title == $menu->menu_name) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="<?= base_url($menu->url); ?>">
+                            <?php else : ?>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="<?= base_url($menu->url); ?>">
+                            <?php endif; ?>
+                            <i class="nav-icon <?= $menu->icon; ?>"></i>
+                            <p><?= $menu->menu_name; ?></p>
+                            </a>
+                        <?php endforeach ?>
+                        </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

@@ -28,8 +28,8 @@ class Client extends CI_Controller
         $data['user'] = $this->db->get_where('tb_users', ['username' => $this->session->userdata('username')])->row_array();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('page/client', $data);
         $this->load->view('templates/footer');
     }
@@ -44,8 +44,8 @@ class Client extends CI_Controller
         $data['user'] = $this->db->get_where('tb_users', ['username' => $this->session->userdata('username')])->row_array();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('page/detail_company', $data);
         $this->load->view('templates/footer');
     }

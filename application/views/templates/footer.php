@@ -1,62 +1,63 @@
- <!-- Footer -->
- <footer class="sticky-footer bg-white">
-     <div class="container my-auto">
-         <div class="copyright text-center my-auto">
-             <span>Copyright &copy; PT MEDIA SARANA INFORMASI 2023</span>
-         </div>
-     </div>
- </footer>
- <!-- End of Footer -->
+<!-- /.content-wrapper -->
+<footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+        <b>Version</b> 3.2.0
+    </div>
+    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+</footer>
 
- </div>
- <!-- End of Content Wrapper -->
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="<?= base_url('auth/logout'); ?>">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
 
- </div>
- <!-- End of Page Wrapper -->
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
 
- <!-- Scroll to Top Button-->
- <a class="scroll-to-top rounded" href="#page-top">
-     <i class="fas fa-angle-up"></i>
- </a>
+<!-- jQuery -->
+<script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="<?= base_url('assets/'); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="<?= base_url('assets/'); ?>plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?= base_url('assets/'); ?>dist/js/adminlte.min.js"></script>
+<!-- JQuery sorting -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script>
 
- <!-- Logout Modal-->
- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <div class="modal-dialog" role="document">
-         <div class="modal-content">
-             <div class="modal-header">
-                 <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">×</span>
-                 </button>
-             </div>
-             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-             <div class="modal-footer">
-                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                 <a class="btn btn-primary" href="<?= base_url('auth/logout'); ?>">Logout</a>
-             </div>
-         </div>
-     </div>
- </div>
+<!-- Page specific script -->
+<script>
+    $(function() {
+        bsCustomFileInput.init();
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
+</script>
 
- <!-- Bootstrap core JavaScript-->
- <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
- <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
 
- <!-- Core plugin JavaScript-->
- <script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
-
- <!-- Custom scripts for all pages-->
- <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
- <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
- <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script>
-
- <script>
-     $(document).ready(function() {
-         $('#dataTable').DataTable();
-     });
- </script>
-
- </body>
-
- </html>
+</html>

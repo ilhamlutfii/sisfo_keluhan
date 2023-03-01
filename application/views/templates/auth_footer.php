@@ -1,12 +1,12 @@
-<!-- Bootstrap core JavaScript-->
-<script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
-<script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
+<!-- jQuery -->
+<script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="<?= base_url('assets/'); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="<?= base_url('assets/'); ?>plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?= base_url('assets/'); ?>dist/js/adminlte.min.js"></script>
+<!-- Page specific script -->
 <script>
     $(document).on('keyup', '#company_id', function(e) {
         // console.log(e.target.value.toUpperCase())
@@ -14,6 +14,11 @@
     })
 </script>
 
+<script>
+    $(function() {
+        bsCustomFileInput.init();
+    });
+</script>
 </body>
 
 </html>
