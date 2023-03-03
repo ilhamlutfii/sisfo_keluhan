@@ -21,7 +21,7 @@
                                 <form class="form-horizontal" method="post" action="<?= base_url('auth') ?>">
                                     <div class="form-group row">
                                         <div class="col-sm">
-                                            <input type="text" class="form-control form-control-user" id="company_id" name="company_id" placeholder="Company Code..." value="<?= set_value('company_id'); ?>">
+                                            <input type="text" class="form-control form-control-user" id="company_code" name="company_code" placeholder="Company Code..." value="<?= set_value('company_id'); ?>">
                                             <?= form_error('company_id', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                     </div>
@@ -39,17 +39,15 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm">
-                                            <button type="submit" class="btn btn-lg" style="width: 100%;">Sign in</button>
+                                            <button type="submit" class="btn btn-primary" style="width: 100%;">Sign in</button>
                                         </div>
                                     </div>
                                 </form>
-                                <hr>
+
                                 <div class="text-center">
                                     <a class="small" href="forgot-password.html">Forgot Password?</a>
                                 </div>
-                                <div class="text-center">
-                                    <a class="small" href="<?= base_url('auth/registration') ?>">Create an Account!</a>
-                                </div>
+                                <hr>
                             </div>
                         </div>
                     </div>

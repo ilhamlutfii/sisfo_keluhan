@@ -13,21 +13,6 @@
             </div>
         </div>
 
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-                <?php foreach ($companyname->result() as $companyname) : ?>
-                    <li class="nav-item">
-                        <a class="nav-link">
-                            <i><?= $companyname->company_code; ?></i>
-                            <p> - <?= $companyname->company_name; ?></p>
-                        </a>
-                    <?php endforeach ?>
-                    </li>
-            </ul>
-        </nav>
-
         <!-- Sidebar Menu -->
         <nav class=" mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">

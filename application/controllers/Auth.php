@@ -7,6 +7,8 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Auth_Model');
+        $this->load->model('Access_Model');
+        $this->load->model('Users_Model');
         $this->load->library('form_validation');
     }
 
@@ -14,7 +16,7 @@ class Auth extends CI_Controller
     {
         $this->form_validation->set_rules('username', 'Username', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
-        $this->form_validation->set_rules('company_id', 'Company Code', 'trim|required');
+        $this->form_validation->set_rules('company_code', 'Company Code', 'trim|required');
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Login';
@@ -30,14 +32,14 @@ class Auth extends CI_Controller
     {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
-        $company_id = $this->input->post('company_id');
+        $company_code = $this->input->post('company_code');
 
-        $user = $this->Auth_Model->login($username, $company_id);
+        $user = $this->Auth_Model->login($username, $company_code);
 
         if ($user->num_rows() > 0) {
             $hasil = $user->row();
             if ($hasil->is_active == 1) {
-                if ($company_id == $hasil->company_code) {
+                if ($company_code == $hasil->company_code) {
                     // var_dump($hasil);
                     // die;
                     if (password_verify($password, $hasil->password)) {
@@ -103,6 +105,17 @@ class Auth extends CI_Controller
 
     public function blocked()
     {
+        $data['title'] = 'Blocked';
+        $data['listrole'] = $this->Access_Model->menu();
+        $data['companyname'] = $this->Auth_Model->getCompany();
+        $data['listusers'] = $this->Users_Model->getUsersByCompany();
+        // $data['listusers'] = $this->Users_Model->getUsersByCompany();
+        $data['user'] = $this->db->get_where('tb_users', ['username' => $this->session->userdata('username')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
         $this->load->view('auth/blocked');
+        $this->load->view('templates/footer');
     }
 }

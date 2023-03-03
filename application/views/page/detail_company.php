@@ -95,6 +95,35 @@
                                                    </tr>
                                                </thead>
                                                <tbody>
+                                                   <?php $no = 1;
+                                                    foreach ($detailusers as $rowusers) : ?>
+                                                       <tr>
+                                                           <th scope="row"><?= $no; ?></th>
+                                                           <td><?= $rowusers['name']; ?></td>
+                                                           <td><?= $rowusers['username']; ?></td>
+                                                           <td style="text-align: center;"><?php if ($rowusers['is_active'] == "1") : ?>
+                                                                   <p class="badge badge-success">Aktif</p>
+                                                               <?php else : ?>
+                                                                   <p class="badge badge-danger">Non Aktif</p>
+                                                               <?php endif; ?>
+                                                           </td>
+                                                           <td style="text-align: center;">
+                                                               <div class="btn-group">
+                                                                   <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                       <i class="fas fa-user-cog"></i>
+                                                                   </button>
+                                                                   <div class="dropdown-menu">
+                                                                       <a class="dropdown-item" href="#">Edit</a>
+                                                                       <a class="dropdown-item" href="#">Hapus</a>
+                                                                   </div>
+                                                               </div>
+                                                           </td>
+                                                       </tr>
+                                                       <?php $no++; ?>
+                                                   <?php endforeach; ?>
+                                               </tbody>
+
+                                               <!-- <tbody>
                                                    <?php $no = 1; ?>
                                                    <tr>
                                                        <th scope="row"><?= $no; ?></th>
@@ -119,7 +148,7 @@
                                                        </td>
                                                    </tr>
                                                    <?php $no++; ?>
-                                               </tbody>
+                                               </tbody> -->
                                            </table>
                                        </div>
                                    </div>

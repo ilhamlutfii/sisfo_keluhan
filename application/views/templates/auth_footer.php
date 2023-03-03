@@ -8,7 +8,7 @@
 <script src="<?= base_url('assets/'); ?>dist/js/adminlte.min.js"></script>
 <!-- Page specific script -->
 <script>
-    $(document).on('keyup', '#company_id', function(e) {
+    $(document).on('keyup', '#company_code', function(e) {
         // console.log(e.target.value.toUpperCase())
         $(this).val(e.target.value.toUpperCase())
     })
