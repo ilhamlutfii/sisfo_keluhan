@@ -122,33 +122,6 @@
                                                        <?php $no++; ?>
                                                    <?php endforeach; ?>
                                                </tbody>
-
-                                               <!-- <tbody>
-                                                   <?php $no = 1; ?>
-                                                   <tr>
-                                                       <th scope="row"><?= $no; ?></th>
-                                                       <td><?= (isset($detailusers->name) ? $detailusers->name : ''); ?></td>
-                                                       <td><?= (isset($detailusers->username) ? $detailusers->username : ''); ?></td>
-                                                       <td style="text-align: center;"><?php if (isset($detailusers->is_active) ? $detailusers->is_active == 1 : '') : ?>
-                                                               <p class="badge badge-success">Aktif</p>
-                                                           <?php else : ?>
-                                                               <p class="badge badge-danger">Non Aktif</p>
-                                                           <?php endif; ?>
-                                                       </td>
-                                                       <td style="text-align: center;">
-                                                           <div class="btn-group">
-                                                               <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                   <i class="fas fa-user-cog"></i>
-                                                               </button>
-                                                               <div class="dropdown-menu">
-                                                                   <a class="dropdown-item" href="#">Edit</a>
-                                                                   <a class="dropdown-item" href="#">Hapus</a>
-                                                               </div>
-                                                           </div>
-                                                       </td>
-                                                   </tr>
-                                                   <?php $no++; ?>
-                                               </tbody> -->
                                            </table>
                                        </div>
                                    </div>

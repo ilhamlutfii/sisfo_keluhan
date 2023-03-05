@@ -34,7 +34,6 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?= base_url('assets/'); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- bs-custom-file-input -->
@@ -42,7 +41,6 @@
 <!-- AdminLTE App -->
 <script src="<?= base_url('assets/'); ?>dist/js/adminlte.min.js"></script>
 <!-- JQuery sorting -->
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script>
 
@@ -56,6 +54,12 @@
     $(document).ready(function() {
         $('#dataTable').DataTable();
     });
+    <?php
+    if ($this->session->flashdata('id') !== null && $this->session->flashdata('status') == 'false') {
+        echo '$("#modal-editUsers-' . $this->session->flashdata('id') . '").modal();';
+        echo '$("#flashmessage-' . $this->session->flashdata('id') . '").html(`' . $this->session->flashdata('message') . '`);';
+    }
+    ?>
 </script>
 
 </body>

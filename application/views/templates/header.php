@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>dist/css/style.css">
     <!-- Data Tables -->
     <link href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script src="<?= base_url('assets/'); ?>plugins/jquery/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
 </head>
 
 <body class="hold-transition sidebar-mini layout-navbar-fixed layout-footer-fixed">

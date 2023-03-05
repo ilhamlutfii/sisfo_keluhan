@@ -32,14 +32,4 @@ class Client_Model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
-
-    // public function detailUsers($id)
-    // {
-    //     $this->db->select('tb_company.*', 'b.name', 'b.username', 'b.is_active');
-    //     $this->db->from($this->_table);
-    //     $this->db->from($this->_table2 . ' b', 'b.company_id=tb_company.id');
-    //     $this->db->where('tb_company.id', $id);
-    //     $query = $this->db->get();
-    //     return $query->row();
-    // }
 }

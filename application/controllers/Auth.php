@@ -14,6 +14,10 @@ class Auth extends CI_Controller
 
     public function index()
     {
+        if ($this->session->userdata('username')) {
+            redirect('dashboard');
+        }
+
         $this->form_validation->set_rules('username', 'Username', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
         $this->form_validation->set_rules('company_code', 'Company Code', 'trim|required');
@@ -109,7 +113,6 @@ class Auth extends CI_Controller
         $data['listrole'] = $this->Access_Model->menu();
         $data['companyname'] = $this->Auth_Model->getCompany();
         $data['listusers'] = $this->Users_Model->getUsersByCompany();
-        // $data['listusers'] = $this->Users_Model->getUsersByCompany();
         $data['user'] = $this->db->get_where('tb_users', ['username' => $this->session->userdata('username')])->row_array();
 
         $this->load->view('templates/header', $data);

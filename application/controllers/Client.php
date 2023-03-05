@@ -34,7 +34,7 @@ class Client extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function detail($id = "", $company_id = "")
+    public function detail($id = "")
     {
         $data['title'] = 'Client';
         $data['listrole'] = $this->Access_Model->menu();

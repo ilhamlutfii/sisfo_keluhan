@@ -14,6 +14,15 @@ class Users_Model extends CI_Model
         return $query;
     }
 
+    public function getUsersById($id)
+    {
+        $this->db->select('*');
+        $this->db->from($this->_table);
+        $this->db->where('tb_users.id', $id);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
     public function getUsersByCompany()
     {
         $this->db->select('*');
@@ -29,5 +38,11 @@ class Users_Model extends CI_Model
         $this->db->from($this->_table2);
         $query = $this->db->get();
         return $query;
+    }
+
+    public function delete($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('tb_users');
     }
 }

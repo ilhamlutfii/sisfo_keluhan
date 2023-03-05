@@ -39,12 +39,6 @@ class Users extends CI_Controller
     public function registration()
 
     {
-        $data['title'] = 'Users';
-        $data['listrole'] = $this->Access_Model->menu();
-        $data['companyname'] = $this->Auth_Model->getCompany();
-        $data['listusers'] = $this->Users_Model->getUsersByCompany();
-        $data['listroles'] = $this->Users_Model->getAllRoles();
-
         $data['user'] = $this->db->get_where('tb_users', ['username' => $this->session->userdata('username')])->row_array();
 
         $this->form_validation->set_rules('name', 'Name', 'required|trim|min_length[4]');
@@ -54,10 +48,8 @@ class Users extends CI_Controller
             'min_length' => 'Password too short!'
         ]);
         $this->form_validation->set_rules('password2', 'Password2', 'required|trim|min_length[4]|matches[password1]');
-        // $this->form_validation->set_rules('company_id', 'company_id', 'required|trim');
-
         if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Pendaftaran Gagal</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Pendaftaran Gagal</div>');
             redirect('users');
         } else {
             if ($this->session->userdata('company_id') == 1) {
@@ -88,5 +80,78 @@ class Users extends CI_Controller
                 redirect('users');
             }
         }
+    }
+
+    public function changepassword($id = "")
+    {
+
+        $data['users'] = $this->Users_Model->getUsersById($id);
+        $this->form_validation->set_rules('current_password', 'current_password', 'required');
+        $this->form_validation->set_rules('new_password', 'new_password', 'required');
+        $this->form_validation->set_rules('confirm_new_password', 'confirm_new_password', 'required');
+        $this->session->set_flashdata('id', $id);
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">validasi gagal</div>');
+            $this->session->set_flashdata('status', 'false');
+            redirect('users');
+        } else {
+            $current_password = $this->input->post('current_password');
+            $new_password = $this->input->post('new_password');
+            if (!password_verify($current_password, $data['users']->password)) {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">current password yang diinput berbeda dengan di database</div>');
+                $this->session->set_flashdata('status', 'false');
+                redirect('users');
+            } else {
+                if ($current_password == $new_password) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">password tidak ada perubahan</div>');
+                    $this->session->set_flashdata('status', 'false');
+                    redirect('users');
+                } else {
+
+                    $data = [
+                        'password' => password_hash($this->input->post('new_password'), PASSWORD_DEFAULT),
+                    ];
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">password berhasil diubah</div>');
+                    $this->session->set_flashdata('status', 'true');
+                    // $this->db->update('tb_users', $data, $id);
+                    $this->db->set('password', $data['password']);
+                    $this->db->where('id', $id);
+                    $this->db->update('tb_users');
+                    redirect('users');
+                }
+            }
+        }
+    }
+
+    public function activation($id = "")
+    {
+
+        $data['users'] = $this->Users_Model->getUsersById($id);
+        if ($data['users']->is_active == 1) {
+            $data = [
+                'is_active' => '0',
+            ];
+
+            $this->db->set('is_active', $data['is_active']);
+            $this->db->where('id', $id);
+            $this->db->update('tb_users');
+            redirect('users');
+        } else {
+            $data = [
+                'is_active' => '1',
+            ];
+
+            $this->db->set('is_active', $data['is_active']);
+            $this->db->where('id', $id);
+            $this->db->update('tb_users');
+            redirect('users');
+        }
+    }
+
+    public function delete($id)
+    {
+        $this->Users_Model->delete($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">user berhasil dihapus</div>');
+        redirect('users');
     }
 }
