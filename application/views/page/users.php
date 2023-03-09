@@ -33,14 +33,14 @@
 
                               <!-- /.card-header -->
                               <div class="card-body">
-                                  <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                                  <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                       <thead>
                                           <tr>
                                               <th scope="col">NO</th>
                                               <th scope="col">USERNAME</th>
                                               <th scope="col">NAME</th>
                                               <th scope="col" style="width: 1px; text-align:center">STATUS</th>
-                                              <th scope="col" style="width: 160px; text-align:center">ACTION</th>
+                                              <th scope="col" style="width: 200px; text-align:center">ACTION</th>
                                           </tr>
                                       </thead>
                                       <tbody>
@@ -88,70 +88,71 @@
               </div>
               <!-- /.container-fluid -->
 
-              <!-- Add User -->
-              <div class=" modal fade" id="modal-addUsers">
-                  <div class="modal-dialog">
-                      <div class="modal-content">
-                          <div class="card card-info">
-                              <div class="card-header">
-                                  <h3 class="card-title">Add Users</h3>
-                              </div>
-                              <!-- /.card-header -->
-                              <!-- form start -->
-                              <form class="form-horizontal" method="post" action="<?= base_url('users/registration'); ?>">
-                                  <div class="card-body">
-                                      <div class="form-group">
-                                          <label for="name">Name</label>
-                                          <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
-                                          <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="username">Username</label>
-                                          <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
-                                          <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="password1">Password</label>
-                                          <input type="password" class="form-control" id="password1" name="password1" placeholder="Enter password">
-                                          <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="password2">Confirm Password</label>
-                                          <input type="password" class="form-control" id="password2" name="password2" placeholder="Enter confirm password">
-                                          <?= form_error('password2', '<small class="text-danger pl-3">', '</small>'); ?>
-                                      </div>
-                                      <div class="form-group">
-                                          <?php if ($this->session->userdata('company_id') == "1") : ?>
-                                              <label for="password2">Confirm Password</label>
-                                              <select name="role_id" class="form-control">
-                                                  <?php foreach ($listroles->result() as $rowroles) :
-                                                        if ($rowroles->id != '2') { ?>
-                                                          <option value="<?php echo $rowroles->id ?>"><?php echo $rowroles->role_name ?></option>
-                                                      <?php
-                                                        }
-                                                        ?>
 
-                                                  <?php endforeach; ?>
-                                              </select>
-                                          <?php else : ?>
-                                          <?php endif; ?>
+              <?php $no = 0;
+                foreach ($listusers->result() as $rowusers) : $no++; ?>
+                  <!-- Add User -->
+                  <div class=" modal fade" id="modal-addUsers">
+                      <div class="modal-dialog">
+                          <div class="modal-content">
+                              <div class="card card-info">
+                                  <div class="card-header">
+                                      <h3 class="card-title">Add Users</h3>
+                                  </div>
+                                  <!-- /.card-header -->
+                                  <!-- form start -->
+                                  <form class="form-horizontal" method="post" action="<?= base_url('users/registration'); ?>">
+                                      <div class="card-body">
+                                          <div class="form-group">
+                                              <label for="name">Name</label>
+                                              <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
+                                              <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="username">Username</label>
+                                              <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+                                              <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="password1">Password</label>
+                                              <input type="password" class="form-control" id="password1" name="password1" placeholder="Enter password">
+                                              <?= form_error('password1', '<small class="text-danger pl-3">', '</small>'); ?>
+                                          </div>
+                                          <div class="form-group">
+                                              <label for="password2">Confirm Password</label>
+                                              <input type="password" class="form-control" id="password2" name="password2" placeholder="Enter confirm password">
+                                              <?= form_error('password2', '<small class="text-danger pl-3">', '</small>'); ?>
+                                          </div>
+                                          <div class="form-group">
+                                              <?php if ($this->session->userdata('company_id') == "1") : ?>
+                                                  <label for="password2">Confirm Password</label>
+                                                  <select name="role_id" class="form-control">
+                                                      <?php foreach ($listroles->result() as $rowroles) :
+                                                            if ($rowroles->id != '2') { ?>
+                                                              <option value="<?php echo $rowroles->id ?>"><?php echo $rowroles->role_name ?></option>
+                                                          <?php
+                                                            }
+                                                            ?>
+
+                                                      <?php endforeach; ?>
+                                                  </select>
+                                              <?php else : ?>
+                                              <?php endif; ?>
+                                          </div>
                                       </div>
-                                  </div>
-                                  <!-- /.card-body -->
-                                  <div class="modal-footer justify-content-between">
-                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                      <button type="submit" class="btn btn-info">Save</button>
-                                  </div>
-                              </form>
+                                      <!-- /.card-body -->
+                                      <div class="modal-footer justify-content-between">
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                          <button type="submit" class="btn btn-info">Save</button>
+                                      </div>
+                                  </form>
+                              </div>
                           </div>
                       </div>
                   </div>
-              </div>
-              <!-- /.modal -->
+                  <!-- /.modal -->
 
-              <!-- Edit User -->
-              <?php $no = 0;
-                foreach ($listusers->result() as $rowusers) : $no++; ?>
+                  <!-- Edit User -->
                   <div class="modal fade" id="modal-editUsers-<?= $rowusers->id ?>">
                       <div class="modal-dialog">
                           <div class="modal-content">
@@ -209,7 +210,7 @@
                   <div class="modal-header">
 
                       <?php if ($rowusers->is_active == "1") : ?>
-                          <h5 class="modal-title" id="deleteModal">Non aktifkan akun?.</h5>
+                          <h5 class="modal-title" id="activeModal">Non aktifkan akun?.</h5>
                           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">×</span>
                           </button>
@@ -219,7 +220,7 @@
                       <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                       <a class="btn btn-danger" href="<?php base_url('') ?>users/activation/<?= $rowusers->id ?>">Non Active</a>
                   <?php else : ?>
-                      <h5 class="modal-title" id="deleteModal">Non aktifkan akun?.</h5>
+                      <h5 class="modal-title" id="activeModal">Non aktifkan akun?.</h5>
                       <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">×</span>
                       </button>

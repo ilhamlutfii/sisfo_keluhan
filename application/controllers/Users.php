@@ -127,9 +127,9 @@ class Users extends CI_Controller
     {
 
         $data['users'] = $this->Users_Model->getUsersById($id);
-        if ($data['users']->is_active == 1) {
+        if ($data['users']->is_active == "1") {
             $data = [
-                'is_active' => '0',
+                'is_active' => "0",
             ];
 
             $this->db->set('is_active', $data['is_active']);
@@ -138,7 +138,7 @@ class Users extends CI_Controller
             redirect('users');
         } else {
             $data = [
-                'is_active' => '1',
+                'is_active' => "1",
             ];
 
             $this->db->set('is_active', $data['is_active']);
