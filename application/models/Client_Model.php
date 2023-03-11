@@ -24,6 +24,15 @@ class Client_Model extends CI_Model
         return $query->row();
     }
 
+    public function getUsersById($id)
+    {
+        $this->db->select('*');
+        $this->db->from($this->_table2);
+        $this->db->where('tb_users.id', $id);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
     public function getByCode($company_code)
     {
         $this->db->select('*');
@@ -41,18 +50,9 @@ class Client_Model extends CI_Model
         return $query;
     }
 
-    public function getUsersById($id)
-    {
-        $this->db->select('*');
-        $this->db->from($this->_table2);
-        $this->db->where('tb_users.id', $id);
-        $query = $this->db->get();
-        return $query->row();
-    }
-
     public function detailUsers($id)
     {
-        $this->db->select('*');
+        $this->db->select('tb_users.*');
         $this->db->from($this->_table2);
         $this->db->join($this->_table . ' a', 'a.id=tb_users.company_id');
         $this->db->where('tb_users.company_id', $id);
@@ -60,9 +60,25 @@ class Client_Model extends CI_Model
         return $query->result_array();
     }
 
+
+    // public function getUsers()
+    // {
+    //     $this->db->select('*');
+    //     $this->db->from($this->_table2);
+    //     $this->db->where('tb_users.company');
+    //     $query = $this->db->get();
+    //     return $query->result_array();
+    // }
+
     public function delete($id)
     {
         $this->db->where('id', $id);
         $this->db->delete('tb_company');
+    }
+
+    public function deleteUsers($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('tb_users');
     }
 }

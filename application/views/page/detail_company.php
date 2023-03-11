@@ -22,7 +22,7 @@
            <div class="col-12 col-sm-12" style="padding-left: 20px; padding-right: 15px;">
                <div class="card">
                    <div class="card-header">
-                       <h3 class="card-title"><a href="<?= base_url('') ?>client?>" style="color: green;"><i class="fas fa-fw fa-chevron-circle-left"></i> Kembali</a></h3>
+                       <h3 class="card-title"><a href="<?= base_url('') ?>client" style="color: green;"><i class="fas fa-fw fa-chevron-circle-left"></i> Kembali</a></h3>
                    </div>
                </div>
            </div>
@@ -117,20 +117,22 @@
                                                        </div>
                                                    </form>
                                                </div>
-                                               <div class="card" style="box-shadow: none; margin-bottom:0px">
-                                                   <div class="col text-right">
-                                                       <a href="client" class="btn btn-info plus float-right" data-toggle="modal" data-target="#modal-addUsers">
-                                                           <i class="fas fa-fw fa-plus"></i> <span data-feather="plus">Add client</span>
-                                                       </a>
-                                                   </div>
-                                                   <hr style="margin: 10px;">
-                                               </div>
-                                               <div class="tab-pane fade" id="tab-users" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
 
+                                               <!-- User List -->
+                                               <div class="tab-pane fade" id="tab-users" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
+                                                   <div class="card" style="box-shadow: none; margin-bottom:0px">
+                                                       <div class="col text-right">
+                                                           <a href="client" class="btn btn-info plus float-right" data-toggle="modal" data-target="#modal-addUsers">
+                                                               <i class="fas fa-fw fa-plus"></i> <span data-feather="plus">Add client</span>
+                                                           </a>
+                                                       </div>
+                                                       <hr style="margin: 10px;">
+                                                   </div>
                                                    <table class="table table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
                                                        <thead>
                                                            <tr>
                                                                <th scope="col">NO</th>
+                                                               <th scope="col">ID</th>
                                                                <th scope="col">NAME</th>
                                                                <th scope="col">USERNAME</th>
                                                                <th scope="col" style="width: 1px; text-align:center">STATUS</th>
@@ -142,6 +144,7 @@
                                                             foreach ($detailusers as $rowusers) : ?>
                                                                <tr>
                                                                    <th scope="row"><?= $no; ?></th>
+                                                                   <td><?= $rowusers['id']; ?></td>
                                                                    <td><?= $rowusers['name']; ?></td>
                                                                    <td><?= $rowusers['username']; ?></td>
                                                                    <td style="text-align: center;"><?php if ($rowusers['is_active'] == "1") : ?>
@@ -157,11 +160,11 @@
                                                                            </button>
                                                                            <div class="dropdown-menu">
                                                                                <a href class="dropdown-item" id="modal-<?= $rowusers['id']; ?>" data-toggle="modal" data-target="#modal-editUsers-<?= $rowusers['id']; ?>"><i class="fas fa-fw fa-key"></i> <span data-feather="unchek">Ganti Password</span></a>
-                                                                               <a href class="dropdown-item" data-toggle="modal" data-target="#modal-deleteUsers-<?= $rowusers['id']; ?>"><i class="fas fa-fw fa-trash"></i> <span data-feather="unchek">Hapus</span></a>
+                                                                               <a href class="dropdown-item" id="modal-<?= $rowusers['id']; ?>" data-toggle="modal" data-target="#modal-deleteUsers-<?= $rowusers['id']; ?>"><i class="fas fa-fw fa-trash"></i> <span data-feather="unchek">Hapus</span></a>
                                                                                <?php if ($rowusers['is_active'] == "1") : ?>
-                                                                                   <a href='<?= base_url('') ?>users/activation/<?= $rowusers['id']; ?>' class="dropdown-item" data-toggle="modal" data-target="#modal-Activation-<?= $rowusers['id']; ?>"><i class="fas fa-fw fa-times-circle"></i> <span data-feather="unchek">Non Aktifkan</span></a>
+                                                                                   <a href class="dropdown-item" id="modal-<?= $rowusers['id']; ?>" data-toggle="modal" data-target="#modal-Activationusers-<?= $rowusers['id']; ?>"><i class="fas fa-fw fa-times-circle"></i> <span data-feather="unchek">Non Aktifkan</span></a>
                                                                                <?php else : ?>
-                                                                                   <a href='<?= base_url('') ?>users/activation/<?= $rowusers['id']; ?>' class="dropdown-item" data-toggle="modal" data-target="#modal-Activation-<?= $rowusers['id']; ?>"><i class="fas fa-fw fa-check-circle"></i> <span data-feather="chek">Aktifkan</span></a>
+                                                                                   <a href class="dropdown-item" id="modal-<?= $rowusers['id']; ?>" data-toggle="modal" data-target="#modal-Activationusers-<?= $rowusers['id']; ?>"><i class="fas fa-fw fa-check-circle"></i> <span data-feather="chek">Aktifkan</span></a>
                                                                                <?php endif; ?>
                                                                            </div>
                                                                        </div>
@@ -225,3 +228,112 @@
                        </div>
                    </div>
                    <!-- /.modal -->
+
+                   <?php $no = 0;
+                    foreach ($detailusers as $rowusers) : $no++; ?>
+                       <!-- Edit User -->
+                       <div class="modal fade" id="modal-editUsers-<?= $rowusers["id"] ?>">
+                           <div class="modal-dialog">
+                               <div class="modal-content">
+                                   <div class="card card-info">
+                                       <div class="card-header">
+                                           <h3 class="card-title">Change Password</h3>
+                                       </div>
+                                       <!-- /.card-header -->
+                                       <!-- form start -->
+                                       <form class="form-horizontal" method="post" action="<?= base_url('') ?>client/changepassword/<?= $rowusers["id"] ?>">
+                                           <div class="card-body">
+                                               <div id="flashmessage-<?= $rowusers["id"] ?>">
+                                               </div>
+                                               <div class="form-group">
+                                                   <input type="hidden" value="<?= $rowusers["id"] ?>" class="form-control" placeholder="" disabled>
+                                               </div>
+                                               <div class="form-group">
+                                                   <label for="username">Username</label>
+                                                   <input type="text" value="<?= $rowusers["username"] ?>" class="form-control" placeholder="" disabled>
+                                               </div>
+                                               <div class="form-group">
+                                                   <label for="current_password">Old Password</label>
+                                                   <input type="password" class="form-control" id="current_password" name="current_password" placeholder="Enter current password">
+
+                                               </div>
+                                               <div class="form-group">
+                                                   <label for="new_password">New Password</label>
+                                                   <input type="password" class="form-control" id="new_password" name="new_password" placeholder="Enter new password">
+
+                                               </div>
+                                               <div class="form-group">
+                                                   <label for="confirm_new_password">Confirm New Password</label>
+                                                   <input type="password" class="form-control" id="confirm_new_password" name="confirm_new_password" placeholder="Enter confirm password">
+
+                                               </div>
+                                           </div>
+                                           <!-- /.card-body -->
+                                           <div class="modal-footer justify-content-between">
+                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                               <button type="submit" class="btn btn-info">Save</button>
+                                           </div>
+                                       </form>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <!-- /.modal -->
+
+
+                       <!-- Aktivasi Modal-->
+                       <div class="modal fade" id="modal-Activationusers-<?= $rowusers['id'] ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                           <div class="modal-dialog" role="document">
+                               <div class="modal-content">
+                                   <div class="modal-header">
+
+                                       <?php if ($rowusers['is_active'] == "1") : ?>
+                                           <h5 class="modal-title" id="activeModal">Non aktifkan akun?.</h5>
+                                           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                               <span aria-hidden="true">×</span>
+                                           </button>
+                                   </div>
+                                   <div class="modal-body">Pilih "Non Active" untuk menonaktifkan akun.</div>
+                                   <div class="modal-footer">
+                                       <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                       <a class="btn btn-danger" href="<?php base_url('') ?>../activationusers/<?= $rowusers['id'] ?>">Non Active</a>
+                                   <?php else : ?>
+                                       <h5 class="modal-title" id="activeModal">Non aktifkan akun?.</h5>
+                                       <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                           <span aria-hidden="true">×</span>
+                                       </button>
+                                   </div>
+                                   <div class="modal-body">Pilih "Activation" untuk mengaktifkan akun.</div>
+                                   <div class="modal-footer">
+                                       <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                       <a class="btn btn-danger" href="<?php base_url('') ?>../activationusers/<?= $rowusers['id'] ?>">Activation</a>
+                                   <?php endif; ?>
+
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <!-- Modal -->
+
+
+                       <!-- Delete Modal-->
+                       <div class="modal fade" id="modal-deleteUsers-<?= $rowusers['id'] ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                           <div class="modal-dialog" role="document">
+                               <div class="modal-content">
+                                   <div class="modal-header">
+                                       <h5 class="modal-title" id="deleteModal">Delete user account?</h5>
+                                       <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                           <span aria-hidden="true">×</span>
+                                       </button>
+                                   </div>
+                                   <div class="modal-body">Select "Delete" for delete users.</div>
+                                   <div class="modal-footer">
+                                       <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                       <a class="btn btn-danger" href="<?php base_url('') ?>../deleteusers/<?= $rowusers['id'] ?>">Delete</a>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <!-- Modal -->
+
+                   <?php endforeach; ?>

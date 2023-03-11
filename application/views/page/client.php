@@ -23,6 +23,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="col card-header text-right">
+                            <?php echo $this->session->status == 'true' ? $this->session->flashdata('message') : '' ?>
                             <a href="client" class="btn btn-info plus float-right" data-toggle="modal" data-target="#modal-addClient">
                                 <i class="fas fa-fw fa-plus"></i> <span data-feather="plus">Add client</span>
                             </a>
@@ -63,9 +64,9 @@
                                                     <div class="dropdown-menu">
                                                         <a href class="dropdown-item" id="model-" data-toggle="modal" data-target="#modal-deleteClient-<?= $rowcompany->id ?>"><i class="fas fa-fw fa-trash"></i> <span data-feather="unchek">Hapus</span></a>
                                                         <?php if ($rowcompany->status == "1") : ?>
-                                                            <a href='<?= base_url('') ?>client/activation/<?= $rowcompany->id ?>' class="dropdown-item" id="modal-<?= $rowcompany->id ?>" data-toggle="modal" data-target="#modal-ActiveClient-<?= $rowcompany->id ?>"><i class="fas fa-fw fa-times-circle"></i> <span data-feather="unchek">Non Aktifkan</span></a>
+                                                            <a href='<?= base_url('') ?>detail/activation/<?= $rowcompany->id ?>' class="dropdown-item" id="modal-<?= $rowcompany->id ?>" data-toggle="modal" data-target="#modal-ActiveClient-<?= $rowcompany->id ?>"><i class="fas fa-fw fa-times-circle"></i> <span data-feather="unchek">Non Aktifkan</span></a>
                                                         <?php else : ?>
-                                                            <a href='<?= base_url('') ?>client/activation/<?= $rowcompany->id ?>' class="dropdown-item" id="modal-<?= $rowcompany->id ?>" data-toggle="modal" data-target="#modal-ActiveClient-<?= $rowcompany->id ?>"><i class="fas fa-fw fa-check-circle"></i> <span data-feather="chek">Aktifkan</span></a>
+                                                            <a href='<?= base_url('') ?>detail/activation/<?= $rowcompany->id ?>' class="dropdown-item" id="modal-<?= $rowcompany->id ?>" data-toggle="modal" data-target="#modal-ActiveClient-<?= $rowcompany->id ?>"><i class="fas fa-fw fa-check-circle"></i> <span data-feather="chek">Aktifkan</span></a>
                                                         <?php endif; ?>
                                                     </div>
                                                 </div>
@@ -124,7 +125,6 @@
             <!-- /.modal -->
 
             <!-- Aktivasi Modal-->
-
             <div class="modal fade" id="modal-ActiveClient-<?= $rowcompany->id ?>" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -139,7 +139,7 @@
                         <div class="modal-body">Pilih "Non Active" untuk menonaktifkan company.</div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-danger" href="<?php base_url('') ?>client/activation/<?= $rowcompany->id ?>">Non Active</a>
+                            <a class="btn btn-danger" href="<?php base_url('') ?>detail/activation/<?= $rowcompany->id ?>">Non Active</a>
                         <?php else : ?>
                             <h5 class="modal-title" id="activeModal">Non aktifkan company?.</h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
@@ -149,7 +149,7 @@
                         <div class="modal-body">Pilih "Activation" untuk mengaktifkan company.</div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-danger" href="<?php base_url('') ?>client/activation/<?= $rowcompany->id ?>">Activation</a>
+                            <a class="btn btn-danger" href="<?php base_url('') ?>detail/activation/<?= $rowcompany->id ?>">Activation</a>
                         <?php endif; ?>
                         </div>
                     </div>
@@ -161,12 +161,12 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="deleteModal">Delete user account?</h5>
+                            <h5 class="modal-title" id="deleteModal">Delete Company?</h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">Select "Delete" for delete companyt.</div>
+                        <div class="modal-body">Select "Delete" for delete company.</div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                             <a class="btn btn-danger" href="<?php base_url('') ?>client/delete/<?= $rowcompany->id ?>">Delete</a>
